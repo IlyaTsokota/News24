@@ -14,16 +14,10 @@ namespace News24.Web.ViewModels
 
         [Required]
         [Display(Name = "Фамилия")]
-        public string MiddleName { get; set; }
-
-
-        [Required]
-        [Display(Name = "Отчество")]
         public string LastName { get; set; }
 
         [Required]
         [RegularExpression(@"^(\+)?(38)?0([- _():=+]?\d){9}$")]
-
         [Display(Name = "Номер телефона")]
         public string Phone { get; set; }
 

@@ -20,12 +20,12 @@ namespace News24.Data.ApplicationContext
 
             var store = new UserStore<User>(context);
             var manager = new UserManager<User>(store);
-            var admin = new User { Email = "gamestore@gmail.com", UserName = "gamestore@gmail.com", FirstName = "Илья", MiddleName = "Цокота", LastName = "Олегович", PhoneNumber = "+380990482560" };
+            var admin = new User { Email = "gamestore@gmail.com", UserName = "gamestore@gmail.com", FirstName = "Илья", LastName = "Цокота", PhoneNumber = "+380990482560" };
             string password = "13Avtobusus";
             var result = manager.Create(admin, password);
             if (result.Succeeded)
             {
-                manager.AddToRole(admin.Email, "Admin");
+                manager.AddToRole(admin.Id, "Admin");
             }
             base.Seed(context);
         }

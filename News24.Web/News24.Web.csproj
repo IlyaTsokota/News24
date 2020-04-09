@@ -193,6 +193,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityStartup.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -243,6 +244,7 @@
     <Content Include="images\nathan-mcbride-229637.jpg" />
     <Content Include="images\nick-karvounis-78711.jpg" />
     <Content Include="images\office-768x512.jpg" />
+    <Content Include="images\person.png" />
     <Content Include="images\person_1.jpg" />
     <Content Include="images\photo-1449157291145-7efd050a4d0e-578x362.jpg" />
     <Content Include="images\ryan-moreno-98837.jpg" />
@@ -276,6 +278,7 @@
     <Content Include="Content\style_1.scss" />
     <Content Include="Content\style_1.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\form2js.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -338,16 +341,20 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmationFailure.cshtml" />
+    <Content Include="Views\Account\_ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\_ForgotPasswordConfirmationFailure.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Mappings\" />
     <Folder Include="Models\" />
   </ItemGroup>

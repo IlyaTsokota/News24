@@ -10,12 +10,8 @@ namespace News24.Model
 {
     public class User : IdentityUser
     {
-        public int UserId { get; set; }
-
         public string FirstName { get; set; }
 
-        public string MiddleName { get; set; }
-        
         public string LastName { get; set; }
 
         public byte[] AccountImage { get; set; }

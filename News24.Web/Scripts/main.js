@@ -191,3 +191,41 @@
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
 }
+//Для модальных окон на Ajax
+$(function () {
+
+    //Optional: turn the chache off
+    $.ajaxSetup({ cache: false });
+
+    $('#btnCreate').click(function () {
+        $('#dialogContent').load(this.href, function () {
+            $('#dialogDiv').modal({
+                backdrop: 'static',
+                keyboard: true
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    });
+});
+function bindForm(dialog) {
+    $('form', dialog).submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    $('#dialogDiv').modal('hide');
+                    // Refresh:
+                    // location.reload();
+                } else {
+                    $('#dialogContent').html(result);
+                    bindForm();
+                }
+            }
+        });
+        return false;
+    });
+}
+// end

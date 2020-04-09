@@ -5,68 +5,112 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 login-form bg-faded">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+            {
+                <h2 class="text-center mt-2">@ViewBag.Title</h2>
+                <hr />
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.LastName, string.Empty, new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.FirstName, string.Empty, new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.MiddleName, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.MiddleName, string.Empty, new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="row mt-4">
+                    <div class="col-md-4 mx-auto text-center">
+                        <label>Выберите фото профиля</label>
+                        <div id="profile-container">
+                            <image id="profileImage" src="~/images/person.png" />
+                        </div>
+                        <input id="imageUpload" type="file"
+                               name="AccountImage" placeholder="Photo" required="" >
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 " })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.FirstName, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 " })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.LastName, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-6 " })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "email@example.com" })
+                                @Html.ValidationMessageFor(m => m.Email, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Phone, new { @class = "col-md-6 " })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "+380991245651" })
+                                @Html.ValidationMessageFor(m => m.Phone, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-6 " })
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.PasswordConfirm, new { @class = "col-md-6 " })
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PasswordConfirm, string.Empty, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12 mx-auto">
+                                <input type="submit" class="btn btn-success w-100 h-50" value="Зарегистрироваться" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "+380501245789" })
-            @Html.ValidationMessageFor(m => m.Phone, string.Empty, new { @class = "text-danger" })
+        </div>
+        <div class="w-100"></div>
+        <div class="col-md-4">
+            <p class="text-center">Уже зарегистрированы? <a href="@Url.Action("Login", "Account")">Войдите</a></p>
         </div>
     </div>
+</div>
+@section Scripts{
+    <script>
+    $("#profileImage").click(function (e) {
+            $("#imageUpload").click();
+        });
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "email@example.com" })
-            @Html.ValidationMessageFor(m => m.Email, string.Empty, new { @class = "text-danger" })
-        </div>
-    </div>
+        function fasterPreview(uploader) {
+            if (uploader.files && uploader.files[0]) {
+                $('#profileImage').attr('src',
+                    window.URL.createObjectURL(uploader.files[0]));
+            }
+        }
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Password, string.Empty, new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.PasswordConfirm, new { @class = "col-md-2 " })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.PasswordConfirm, string.Empty, new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class=" col offset-md-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Зарегистрироваться" />
-        </div>
-    </div>
+        $("#imageUpload").change(function () {
+            fasterPreview(this);
+        });</script>
+   
 }

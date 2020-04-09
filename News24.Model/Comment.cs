@@ -1,7 +1,10 @@
-﻿namespace News24.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace News24.Model
 {
     public class Comment
     {
+        [Key]
         public int ReviewsId { get; set; }
 
         public string Head { get; set; }

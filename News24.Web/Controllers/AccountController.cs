@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,6 +53,7 @@ namespace News24.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Logger.Log.Info($"Пользователь {model.Email} зашел на сайт");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -80,7 +80,8 @@ namespace News24.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, MiddleName = model.MiddleName, LastName = model.LastName, PhoneNumber = model.Phone };
+                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.Phone, AccountImage = new byte[model.AccountImage.ContentLength]};
+                model.AccountImage.InputStream.Read(user.AccountImage, 0, model.AccountImage.ContentLength);
                 var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
@@ -98,8 +99,8 @@ namespace News24.Web.Controllers
                             "Чтобы подтвердить регистрацию <a href=\"" + callbackUrl + "\">кликните здесь</a>")
                         .ConfigureAwait(false);
 
-
-                    return RedirectToAction("Index", "Home");
+                    Logger.Log.Info($"Был зарегистрирован новый пользователь {user.Email}");
+                    return View("DisplayEmail");
                 }
 
 
@@ -121,7 +122,8 @@ namespace News24.Web.Controllers
             var result = await _userManager.ConfirmEmailAsync(userId, code).ConfigureAwait(false);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
-        [AllowAnonymous]
+
+        [OnlyAnonymous]
         public ActionResult ForgotPassword()
         {
             return PartialView("_ForgotPassword");
@@ -139,14 +141,14 @@ namespace News24.Web.Controllers
                 if (user == null)
                 {
                     // Don't reveal that the user does not exist
-                    return View("ForgotPasswordConfirmationFailure");
+                    return PartialView("_ForgotPasswordConfirmationFailure");
                 }
 
                 // Send an email with this link
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user.Id).ConfigureAwait(false);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
                 await _userManager.SendEmailAsync(user.Id, "Восстановаление пароля", "Сбросьте пароль нажав <a href=\"" + callbackUrl + "\">здесь</a>").ConfigureAwait(false);
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                return PartialView("_ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -157,13 +159,13 @@ namespace News24.Web.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
-            return View();
+            return PartialView("_ForgotPasswordConfirmation");
         }
 
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmationFailure()
         {
-            return View();
+            return PartialView("_ForgotPasswordConfirmationFailure");
         }
         // GET: /Account/ResetPassword
         [AllowAnonymous]
@@ -193,11 +195,11 @@ namespace News24.Web.Controllers
             var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password).ConfigureAwait(false);
             if (result.Succeeded)
             {
+                Logger.Log.Info($"Пользователь {user.Email} сбросил пароль");
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
 
             ModelState.AddModelErrors(result.Errors.Select(x => new ValidationResult(x)));
-
             return View();
         }
 

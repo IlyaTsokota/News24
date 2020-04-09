@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var user = User.Identity.GetUserId();
+}
+@if (Request.IsAuthenticated)
+{
+    <div clas="col-md-12">
+        <a href="@Url.Action("Index","Manage")" class="color_fff fh5co_mediya_setting">
+            <i class="fa fa-user-md"></i> Профиль
+        </a>
+    </div>
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item" style="text-decoration: none; color: black;">Выйти</a>
+    }
+   
+}
+else
+{
+    <div class="row">
+        <div clas="col-md-5" style="margin-right: 5px;">
+            <a href="@Url.Action("Login","Account")" class="color_fff fh5co_mediya_setting">
+                <i class="fa fa-user-md"></i> Войти
+            </a>
+        </div>
+        <div clas="col-md-5">
+            <a href="@Url.Action("Register","Account")" class="color_fff fh5co_mediya_setting">
+                <i class="fa fa-user-circle"></i> Регистрация
+            </a>
+        </div>
+    </div>
+
+}
