@@ -219,8 +219,9 @@
     <Compile Include="Areas\Admin\ViewModels\UserViewModels\IndexUserViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StartController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\HttpPostedFileBaseExtension.cs" />
     <Compile Include="Extensions\ValidationResultExtension.cs" />
@@ -248,6 +249,11 @@
     <Compile Include="ViewModels\ManageViewModels\ManageLoginsViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModels\ArticleCategoryViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModels\IndexViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModels\LastArticlesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\News24.mdf" />
@@ -344,6 +350,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.stellar.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -411,9 +419,10 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Start\_LastArticles.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Article\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

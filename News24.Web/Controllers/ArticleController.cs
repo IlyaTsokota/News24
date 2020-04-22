@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace News24.Web.Controllers
 {
-    public class StartController : Controller
+    public class ArticleController : Controller
     {
-        // GET: Home
+        // GET: Article
         public ActionResult Index()
         {
             return View();
