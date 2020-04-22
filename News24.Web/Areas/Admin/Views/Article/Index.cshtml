@@ -1,0 +1,48 @@
+﻿@model News24.Web.Areas.Admin.ViewModels.ArticleViewModels.IndexArticleViewModel
+@using News24.Web.Helpers
+@{
+    ViewBag.Title = "Статьи";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center my-3">
+    <h2>@ViewBag.Title</h2>
+    @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-primary" })
+</div>
+
+<table class="table table-hover">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Articles.FirstOrDefault().Head)</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Articles.FirstOrDefault().Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Articles.FirstOrDefault().PublicationDate)
+        </th>
+
+        <th class="text-right">Действие</th>
+    </tr>
+
+    @foreach (var item in Model.Articles)
+    {
+<tr>
+    <td>@item.Head</td>
+
+    <td>@item.Category.Name</td>
+    <td>
+        @item.PublicationDate.ToString("dd.MM.yyyy HH:mm")
+    </td>
+    <td class="text-right">
+        @Html.ActionLink("Подробности", "Details", new { id = item.ArticleId }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Изменить", "Edit", new { id = item.ArticleId }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Удалить", "Delete", new { id = item.ArticleId }, new { @class = "btn btn-danger" })
+
+    </td>
+</tr>
+    }
+
+</table>
+
+<div class="row pl-3">
+    @Html.PageLinks(Model.Pager, x => Url.Action("Index", new { page = x }))
+</div>

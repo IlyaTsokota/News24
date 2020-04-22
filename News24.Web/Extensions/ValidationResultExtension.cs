@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web.ModelBinding;
 using ModelStateDictionary = System.Web.Mvc.ModelStateDictionary;
 
 namespace News24.Web.Extensions

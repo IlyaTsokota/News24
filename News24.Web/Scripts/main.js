@@ -228,4 +228,74 @@ function bindForm(dialog) {
         return false;
     });
 }
+
 // end
+$(document).ready(function () {
+    $('.block').on('click', '.extremum-click', function () {
+        $(this).siblings('.extremum-slide').slideToggle(0);
+    });
+});
+
+(function ($) {
+    $(function () {
+
+        $('ul.tabs__caption').each(function (i) {
+            var storage = localStorage.getItem('tab' + i);
+            if (storage) {
+                $(this).find('li').removeClass('active').eq(storage).addClass('active')
+                    .closest('div.tabs').find('div.tabs__content').removeClass('active').eq(storage).addClass('active');
+            }
+        });
+
+        $('ul.tabs__caption').on('click', 'li:not(.active)', function () {
+            $(this)
+                .addClass('active').siblings().removeClass('active')
+                .closest('div.tabs').find('div.tabs__content').removeClass('active').eq($(this).index()).addClass('active');
+            var ulIndex = $('ul.tabs__caption').index($(this).parents('ul.tabs__caption'));
+            localStorage.removeItem('tab' + ulIndex);
+            localStorage.setItem('tab' + ulIndex, $(this).index());
+        });
+
+    });
+})(jQuery);
+
+$('.upload__image').change(function () {
+    const oInput = this;
+    const validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".jfif"];
+    for (let i = 0; i < oInput.files.length; i++) {
+        if (oInput.type === "file") {
+            const sFileName = oInput.files[i].name;
+            if (sFileName.length > 0) {
+                let blnValid = false;
+                for (let j = 0; j < validFileExtensions.length; j++) {
+                    const sCurExtension = validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() ==
+                        sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+
+                if (!blnValid) {
+                    alert(sFileName +
+                        " имеет недоступный формат. ƒоступные форматы: " +
+                        validFileExtensions.join(", "));
+                    oInput.value = "";
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+});
+
+$('#supplyProductAdd').click(function () {
+    var res = "";
+    var count = $('.supply__product').length;
+    var first = $('.supply__product')[0].innerHTML;
+    first = first.replace(/\[0\]/g, '[' + count + ']');
+    res += '<div class="form-group row mx-0 supply__product">' +
+        first +
+        '</div>';
+    $('#supplyProducts').append(res);
+});

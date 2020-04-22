@@ -1,12 +1,9 @@
-﻿using System;
+﻿using News24.Data.Infrastructure;
+using News24.Data.Repositories;
+using News24.Model;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using News24.Data.Infrastructure;
-using News24.Data.Repositories;
-using News24.Model;
 
 namespace News24.Service
 {
@@ -68,20 +65,17 @@ namespace News24.Service
             _unitOfWork.Commit();
         }
 
-        public List<Category> GetCategories()
-        {
-            var categories = _categoryRepository.GetAll().OrderBy(x=>x.Name).ToList();
-            return categories;
-        }
+        public List<Category> GetCategories() => _categoryRepository.GetAll().ToList();
 
-        public Category GetCategory(int id)
-        {
-            throw new NotImplementedException();
-        }
+
+        public Category GetCategory(int id) => _categoryRepository.GetById(id);
+
+
 
         public void UpdateCategory(Category category)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Update(category);
+            _unitOfWork.Commit();
         }
     }
 }

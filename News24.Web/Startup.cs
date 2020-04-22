@@ -1,7 +1,4 @@
 ﻿
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Microsoft.AspNet.Identity;
@@ -16,6 +13,10 @@ using News24.Model;
 using News24.Service;
 using News24.Web.App_Start;
 using Owin;
+using System.Reflection;
+using System.Web;
+using System.Web.Mvc;
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 [assembly: OwinStartup(typeof(News24.Web.Startup))]
 
 namespace News24.Web
@@ -24,7 +25,7 @@ namespace News24.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAutofac(app); 
+            ConfigureAutofac(app);
             IdentityStartup.ConfigureAuth(app);
         }
 
@@ -33,7 +34,7 @@ namespace News24.Web
             var builder = new ContainerBuilder();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
             builder.RegisterType<ApplicationContext>().AsSelf().InstancePerRequest();
-            
+
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<User>>().InstancePerRequest();
             builder.RegisterType<ApplicationRoleStore>().As<IRoleStore<IdentityRole, string>>();
             builder.RegisterType<ApplicationRoleManager>().AsSelf().InstancePerRequest();
@@ -50,7 +51,7 @@ namespace News24.Web
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerRequest();
-            builder.RegisterControllers(Assembly.GetExecutingAssembly()); 
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterFilterProvider();
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

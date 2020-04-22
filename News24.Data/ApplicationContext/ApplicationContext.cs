@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 using News24.Model;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -12,14 +7,14 @@ namespace News24.Data.ApplicationContext
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
-        public ApplicationContext()
-            :base("News24")
-        { }
-
         static ApplicationContext()
         {
-           Database.SetInitializer(new ApplicationContextInitializer());
+            Database.SetInitializer(new ApplicationContextInitializer());
         }
+
+        public ApplicationContext()
+           : base("name=News24")
+        { }
 
         public IDbSet<Article> Articles { get; set; }
 
@@ -28,10 +23,12 @@ namespace News24.Data.ApplicationContext
         public IDbSet<Comment> Comments { get; set; }
 
         public IDbSet<Log> Logs { get; set; }
+
         public void Commit()
         {
             SaveChanges();
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

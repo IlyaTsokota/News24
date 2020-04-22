@@ -25,7 +25,8 @@ namespace News24.Data.Infrastructure
 
         public virtual void Add(T entity)
         {
-            _dbSet.Add(entity);
+            _dbSet.Attach(entity);
+            _dataContext.Entry(entity).State = EntityState.Added;
         }
 
         public virtual void Update(T entity)

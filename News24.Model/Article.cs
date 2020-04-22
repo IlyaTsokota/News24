@@ -19,8 +19,10 @@ namespace News24.Model
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
+        public int CategoryId { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Category Category { get; set; }
+
+        public virtual List<Comment> Comments { get; set; }
     }
 }

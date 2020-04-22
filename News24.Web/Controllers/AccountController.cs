@@ -1,9 +1,4 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 using Coco.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -12,6 +7,11 @@ using News24.Data.Identity;
 using News24.Model;
 using News24.Web.Extensions;
 using News24.Web.ViewModels.AccountViewModels;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace News24.Web.Controllers
 {
@@ -33,8 +33,8 @@ namespace News24.Web.Controllers
         // GET: /Account/Login
         [OnlyAnonymous]
         public ActionResult Login(string returnUrl)
-        { 
-            return View(new LoginViewModel(){ReturnUrl = returnUrl});
+        {
+            return View(new LoginViewModel() { ReturnUrl = returnUrl });
         }
         [HttpPost]
         [OnlyAnonymous]
@@ -80,8 +80,8 @@ namespace News24.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.Phone, AccountImage = new byte[model.AccountImage.ContentLength]};
-                model.AccountImage.InputStream.Read(user.AccountImage, 0, model.AccountImage.ContentLength);
+                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.Phone, AccountImage = model.AccountImage.ToByteArray() };
+       
                 var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
@@ -227,7 +227,7 @@ namespace News24.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-     
+
         internal class ChallengeResult : HttpUnauthorizedResult
         {
             // Used for XSRF protection when adding external logins

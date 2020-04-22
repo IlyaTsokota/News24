@@ -1,4 +1,8 @@
-﻿<div class="container-fluid paddding mb-5">
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid paddding mb-5">
     <div class="row mx-0">
         <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
             <div class="fh5co_suceefh5co_height">
@@ -80,7 +84,7 @@
         <div>
             <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Trending</div>
         </div>
-        @{Html.RenderPartial("_Trendings");}
+        @*@{Html.RenderPartial("_Trendings");}*@
 
     </div>
 </div>
@@ -187,8 +191,8 @@
                 </div>
             </div>
             <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-                @{Html.RenderPartial("_Tags");}
-                @{Html.RenderPartial("_MostPopular");}
+                @*@{Html.RenderPartial("_Tags");}*@
+                @*@{Html.RenderPartial("_MostPopular");}*@
 
             </div>
         </div>

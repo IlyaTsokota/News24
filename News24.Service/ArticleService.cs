@@ -1,12 +1,9 @@
-﻿using System;
+﻿using News24.Data.Infrastructure;
+using News24.Data.Repositories;
+using News24.Model;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using News24.Data.Infrastructure;
-using News24.Data.Repositories;
-using News24.Model;
 
 namespace News24.Service
 {
@@ -16,7 +13,7 @@ namespace News24.Service
 
         List<Article> GetArticles();
 
-        IEnumerable<ValidationResult> CanAddProduct(Article newArticle);
+        IEnumerable<ValidationResult> CanAddArticle(Article newArticle);
 
         void CreateArticle(Article article);
 
@@ -37,7 +34,7 @@ namespace News24.Service
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<ValidationResult> CanAddProduct(Article newArticle)
+        public IEnumerable<ValidationResult> CanAddArticle(Article newArticle)
         {
             Article article;
             if (newArticle.ArticleId == 0)
@@ -55,14 +52,14 @@ namespace News24.Service
             }
         }
 
-    
+
         public void CreateArticle(Article article)
         {
             _articleRepository.Add(article);
-           _unitOfWork.Commit();
+            _unitOfWork.Commit();
         }
 
-     
+
         public void DeleteArticle(Article article)
         {
             _articleRepository.Delete(article);
@@ -77,7 +74,7 @@ namespace News24.Service
 
         public List<Article> GetArticles() => _articleRepository.GetAll().ToList();
 
-       
+
 
         public void UpdateArticle(Article article)
         {

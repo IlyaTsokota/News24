@@ -1,21 +1,27 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using ServiceStack.DataAnnotations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace News24.Model
 {
     public class User : IdentityUser
     {
-        public string FirstName { get; set; }
 
+        public override string Id { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+        
+        [Required]
+        [MaxLength(50)]
         public string LastName { get; set; }
 
         public byte[] AccountImage { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public override DateTime? LockoutEndDateUtc { get; set; }
+
+        public virtual List<Comment> Comments { get; set; }
     }
 }

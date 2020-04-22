@@ -1,15 +1,11 @@
-﻿using System;
-
-
-
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-
 using News24.Data.Identity;
 using News24.Model;
 using Owin;
+using System;
 
 namespace News24.Web.App_Start
 {

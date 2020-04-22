@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using News24.Data.Infrastructure;
+﻿using News24.Data.Infrastructure;
 using News24.Data.Repositories;
 using News24.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace News24.Service
 {

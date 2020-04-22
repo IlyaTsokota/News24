@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using News24.Model;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace News24.Data.ApplicationContext
 {
@@ -10,7 +10,7 @@ namespace News24.Data.ApplicationContext
     {
         protected override void Seed(ApplicationContext context)
         {
-           
+
             var roles = new List<IdentityRole>
             {
                 new IdentityRole("User"),

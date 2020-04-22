@@ -15,7 +15,7 @@ namespace News24.Web.ViewModels.AccountViewModels
         [DisplayName("Пароль")]
         public string Password { get; set; }
 
-  
+
 
         [Required]
         [DisplayName("Подтвердите пароль")]

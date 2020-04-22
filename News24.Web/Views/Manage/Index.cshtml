@@ -1,0 +1,68 @@
+﻿@using News24.Web.ViewModels.ManageViewModels
+@model News24.Web.ViewModels.ManageViewModels.IndexManageViewModel
+<div class="container mt-5">
+    <div class="row bg-faded ">
+
+        <div class="col-md-4  mr-auto mt-5">
+           <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.AccountImage)" alt="AccountImage" class="img-fluid img-thumbnail" />
+        </div>
+        <div class="col-md-8">
+          
+            <table class="table roboto">
+
+                <thead>
+                    <tr>
+                        <th colspan="3" scope="col"><h3>Персональные данные</h3></th>
+                     
+                        <th  scope="col">
+                            @using (Html.BeginForm("LogOff", "Account"))
+                            {
+                                <button class="btn-danger"><i class="fas fa-sign-out-alt"></i> Выход</button>
+                            }
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>  @Html.DisplayNameFor(m => m.FirstName):</td>
+                        <td class="border-right">   @Html.DisplayFor(m => m.FirstName)</td>
+
+                    </tr>
+                    <tr>
+
+
+                        <td> @Html.DisplayNameFor(m => m.LastName):</td>
+                        <td> @Html.DisplayFor(m => m.LastName)</td>
+                    </tr>
+                    <tr>
+
+                        <td>    @Html.DisplayNameFor(m => m.Email):</td>
+                        <td> @Html.DisplayTextFor(m => m.Email)</td>
+
+                    </tr>
+                    <tr>
+
+
+                        <td> @Html.DisplayNameFor(m => m.Phone):</td>
+                        <td> @Html.DisplayFor(m => m.Phone)</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+          
+            <div>
+
+               
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+

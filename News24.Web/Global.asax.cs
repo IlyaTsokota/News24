@@ -1,9 +1,10 @@
-﻿using System;
+﻿using News24.Web.App_Start;
+using News24.Web.Controllers;
+using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using News24.Web.Controllers;
 
 namespace News24.Web
 {
@@ -11,23 +12,23 @@ namespace News24.Web
     {
         protected void Application_Start()
         {
-            log4net.Config.XmlConfigurator.Configure();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Bootstrapper.Run();
         }
 
         protected void Application_Error(Object sender, EventArgs e)
         {
-            var httpContext = ((MvcApplication) sender).Context;
+            var httpContext = ((MvcApplication)sender).Context;
             var currentController = string.Empty;
             var currentAction = string.Empty;
             var currentRouteData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(httpContext));
 
             if (currentRouteData != null)
             {
-                if(!string.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
+                if (!string.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
                 {
                     currentController = currentRouteData.Values["controller"].ToString();
                 }
@@ -39,10 +40,10 @@ namespace News24.Web
 
             // пойманное исключение
             var ex = Server.GetLastError();
-       
+
             //// тут запись в мой журнал, в этой же точке можно отправлять письма админам
-            //logger.Error(ex.Message);
-            
+            Logger.Log.Error(ex);
+
             var controller = new ErrorController();
             var routeData = new RouteData();
             // метод по умолчанию в контроллере
@@ -62,7 +63,7 @@ namespace News24.Web
                     default:
                         action = "HttpError";
                         break;
-                    // можно добавить свои методы контроллера для любых кодов ошибок
+                        // можно добавить свои методы контроллера для любых кодов ошибок
                 }
             }
             httpContext.ClearError();
