@@ -60,5 +60,35 @@ namespace News24.Web.Helpers
             result.Append(ulTag);
             return MvcHtmlString.Create(result.ToString());
         }
+        public static MvcHtmlString PaginationArticlesAjax(this HtmlHelper html, Pager pager)
+        {
+            if (pager == null || pager.TotalPages == 1)
+            {
+                return null;
+            }
+
+            var result = new StringBuilder();
+            var divTag = new TagBuilder("div");
+            divTag.AddCssClass("col-12 text-center pb-4 pt-4");
+           
+            for (var i = 1; i <= pager.TotalPages; i++)
+            {
+                var buttonTag = new TagBuilder("button");
+                if (i == pager.PageNumber)
+                {
+                    buttonTag.AddCssClass("active");
+                }
+                buttonTag.AddCssClass("btn_pagging");
+                buttonTag.MergeAttribute("type", "submit");
+                buttonTag.MergeAttribute("name", "page");
+                buttonTag.MergeAttribute("value", i.ToString());
+                buttonTag.InnerHtml = i.ToString();
+              
+                divTag.InnerHtml += buttonTag.ToString();
+            }
+           
+            result.Append(divTag);
+            return MvcHtmlString.Create(result.ToString());
+        }
     }
 }

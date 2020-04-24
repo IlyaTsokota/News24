@@ -21,5 +21,7 @@ namespace News24.Web.ViewModels
         [Display(Name = "Электронный адрес")]
         [EmailAddress]
         public string Email { get; set; }
+
+        public byte[] Image { get; set; }
     }
 }

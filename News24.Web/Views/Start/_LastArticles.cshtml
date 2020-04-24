@@ -1,79 +1,39 @@
-﻿@model News24.Web.ViewModels.StartViewModels.LastArticlesViewModel
+﻿@model News24.Web.ViewModels.StartViewModels.IndexViewModel
 
-    <div class="row mx-0">
+   
         <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
             <div class="fh5co_suceefh5co_height">
-                <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Articles[0].MainImage)" alt="@Model.Articles[0].Head" />
+                <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.LastArticles[0].MainImage)" alt="@Model.LastArticles[0].Head" />
 
                 <div class="fh5co_suceefh5co_height_position_absolute"></div>
                 <div class="fh5co_suceefh5co_height_position_absolute_font">
                     <div class="">
                         <a href="#" class="color_fff">
-                            <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.Articles[0].PublicationDate.ToString("dd.MM.yyyy")
+                            <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.LastArticles[0].PublicationDate.ToString("dd.MM.yyyy")
                         </a>
                     </div>
-                    <div class="">@Html.ActionLink(Model.Articles[0].Head, "Index", "Article", new { id = Model.Articles[0].ArticleId }, new { @class = "fh5co_good_font" })</div>
+                    <div class="">@Html.ActionLink(Model.LastArticles[0].Head, "Index", "Article", new { id = Model.LastArticles[0].ArticleId }, new { @class = "fh5co_good_font" })</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="row">
-                @for (int i = 1; i < Model.Articles.Count(); i++) {
+                @for (int i = 1; i < Model.LastArticles.Count(); i++) {
                 <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
                     <div class="fh5co_suceefh5co_height_2">
-                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Articles[i].MainImage)" alt="@Model.Articles[i].Head" />
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.LastArticles[i].MainImage)" alt="@Model.LastArticles[i].Head" />
 
                         <div class="fh5co_suceefh5co_height_position_absolute"></div>
                         <div class="fh5co_suceefh5co_height_position_absolute_font_2">
                             <div class="">
                                 <a href="#" class="color_fff">
-                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.Articles[i].PublicationDate.ToString("dd.MM.yyyy")
+                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.LastArticles[i].PublicationDate.ToString("dd.MM.yyyy")
                                 </a>
                             </div>
-                            <div class="">@Html.ActionLink(Model.Articles[i].Head, "Index", "Article", new { id = Model.Articles[i].ArticleId }, new { @class = "fh5co_good_font" })</div>
+                            <div class="">@Html.ActionLink(Model.LastArticles[i].Head, "Index", "Article", new { id = Model.LastArticles[i].ArticleId }, new { @class = "fh5co_good_font" })</div>
                         </div>
                     </div>
                 </div>
                 }
-                @*<div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2">
-                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Articles[2].MainImage)" alt="@Model.Articles[2].Head" />
-                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.Articles[2].PublicationDate.ToString("dd.MM.yyyy") </a></div>
-                            <div class="">@Html.ActionLink(Model.Articles[2].Head, "Index", "Article", new { id = Model.Articles[2].ArticleId }, new { @class = "fh5co_good_font" })</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2">
-                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Articles[3].MainImage)" alt="@Model.Articles[3].Head" />
-                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class="">
-                                <a href="#" class="color_fff">
-                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp; @Model.Articles[3].PublicationDate.ToString("dd.MM.yyyy")
-                                </a>
-                            </div>
-                            <div class="">@Html.ActionLink(Model.Articles[3].Head, "Index", "Article", new { id = Model.Articles[3].ArticleId }, new { @class = "fh5co_good_font" })</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2">
-                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Articles[4].MainImage)" alt="@Model.Articles[4].Head" />
-                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class="">
-                                <a href="#" class="color_fff">
-                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.Articles[4].PublicationDate.ToString("dd.MM.yyyy")
-                                </a>
-                            </div>
-                            <div class="">@Html.ActionLink(Model.Articles[4].Head, "Index", "Article", new { id = Model.Articles[4].ArticleId }, new { @class = "fh5co_good_font" })</div>
-                        </div>
-                    </div>
-                </div>*@
             </div>
         </div>
-
-    </div>
