@@ -1,0 +1,48 @@
+﻿@model News24.Web.Areas.Admin.ViewModels.LogViewModels.IndexLogViewModel
+@using News24.Web.Helpers
+
+@{
+    ViewBag.Title = "Логи";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Logs.FirstOrDefault().Message)</th>
+
+
+            <th>@Html.DisplayNameFor(model => model.Logs.FirstOrDefault().Level)</th>
+
+
+            <th>@Html.DisplayNameFor(model => model.Logs.FirstOrDefault().Date)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Logs)
+        {
+            <tr>
+                <td>@item.Message</td>
+
+
+                <td>@item.Level</td>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy HH:mm")
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+
+<div class="row pl-3">
+    @Html.PageLinks(Model.Pager, x => Url.Action("Index", new { page = x }))
+</div>
