@@ -7,7 +7,6 @@ namespace News24.Model
 {
     public class User : IdentityUser
     {
-
         public override string Id { get; set; }
 
         [Required]
@@ -22,6 +21,7 @@ namespace News24.Model
 
         public override DateTime? LockoutEndDateUtc { get; set; }
 
-        public virtual List<Comment> Comments { get; set; }
+        public virtual List<Article> Articles { get; set; } 
+
     }
 }

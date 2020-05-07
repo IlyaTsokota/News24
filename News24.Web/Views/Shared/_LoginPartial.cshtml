@@ -2,14 +2,21 @@
 @{
     var user = User.Identity.GetUserId();
 }
-@if (Request.IsAuthenticated)
+@if (User.Identity.IsAuthenticated)
 {
     <div clas="col-md-12">
         <a href="@Url.Action("Index","Manage")" class="color_fff fh5co_mediya_setting">
             <i class="fa fa-user-md"></i> Профиль
         </a>
     </div>
-   
+    if (User.IsInRole("Admin"))
+    {
+        <div clas="col-md-12">
+            <a href="@Url.Action("Index","Home", new { Area = "Admin" })" class="color_fff fh5co_mediya_setting">
+                Админ панель
+            </a>
+        </div>
+    }
 }
 else
 {

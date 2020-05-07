@@ -1,1 +1,27 @@
-﻿
+﻿@model List<News24.Web.ViewModels.StartViewModels.ArticleViewModel>
+<a name="trend"></a>
+<div class="container animate-box">
+    <div>
+        <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">В тренде</div>
+    </div>
+    <div class="owl-carousel owl-theme" id="slider2">
+        @foreach (var item in Model)
+        {
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src="data:image/jpeg;base64,@Convert.ToBase64String(item.MainImage)" alt="@item.Head" /></div>
+
+                    <div>
+
+                        <a href="@Url.Action("Details" ,"Start", new { id =item.ArticleId})" class="d-block fh5co_small_post_heading"><span class="">@item.Head</span></a>
+                        <div class="c_g">
+                            <i class="fa fa-clock-o"></i> @item.PublicationDate.ToString("D")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>

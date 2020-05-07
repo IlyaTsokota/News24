@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace News24.Model
 {
@@ -16,13 +17,15 @@ namespace News24.Model
 
         public DateTime PublicationDate { get; set; }
 
-        public int UserId { get; set; }
+        public string SearchValues { get; set; }
+
+        public string UserId { get; set; }
+
+        public int CategoryId { get; set; }
 
         public virtual User User { get; set; }
-        public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
-        public virtual List<Comment> Comments { get; set; }
     }
 }

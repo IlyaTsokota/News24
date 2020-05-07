@@ -1,4 +1,4 @@
-﻿
+﻿@using System.ComponentModel
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -16,13 +16,13 @@
     <!-- Bootstrap CSS -->
     <link href="@Url.Content("~/Content/style_1.css")" rel="stylesheet" type="text/css" />
 
-    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/style_1.scss")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" type="text/css" />
     <!-- Modernizr JS -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
+
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -35,7 +35,7 @@
                         <i class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;@DateTime.Now.ToString("D")
                     </a>
                     <div class="d-inline-block fh5co_trading_posotion_relative">
-                        <a href="#" class="treding_btn">В тренде</a>
+                        <a href="#trend" class="treding_btn">В тренде</a>
                     </div>
 
                 </div>
@@ -86,101 +86,88 @@
     </div>
     <div class="container-fluid bg-faded fh5co_padd_mediya padding_786">
         <div class="container padding_786">
-            <nav class="navbar navbar-toggleable-md navbar-light ">
-                <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
+            <nav class="navbar navbar-toggleable-sm ">
+                <a class="navbar-brand" href="@Url.Action("Index", "Start")"><img src="~/images/logo.png" alt="img" class="mobile_logo_width" /></a>
+                <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="~/images/logo.png" alt="img" class="mobile_logo_width" /></a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item ">
+                            <a class="nav-link  link" href="@Url.Action("Index", "Start") ">Главная </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="blog.html">Blog <span class="sr-only">(current)</span></a>
+                            <a class="nav-link  link" href="@Url.Action("News", "Start")">Новости </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="single.html">Single <span class="sr-only">(current)</span></a>
+                            <a class="nav-link  link" href="@Url.Action("Index", "Start")">Контакты</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">World <span class="sr-only">(current)</span></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                                <a class="dropdown-item" href="#">Action in</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">Community<span class="sr-only">(current)</span></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                                <a class="dropdown-item" href="#">Action in</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="Contact_us.html">Contact <span class="sr-only">(current)</span></a>
-                        </li>
+
                     </ul>
                 </div>
             </nav>
+
         </div>
     </div>
 
     <div class="container-fluid">
         @RenderBody()
     </div>
-    <div class="container-fluid fh5co_footer_bg pb-3 mr-auto ml-auto">
+
+    <div class="container-fluid fh5co_footer_bg pb-3">
         <div class="container animate-box">
             <div class="row">
                 <div class="col-12 spdp_right py-5"><img src="~/images/white_logo.png" alt="img" class="footer_logo" /></div>
                 <div class="clearfix"></div>
                 <div class="col-12 col-md-4 col-lg-3">
-                    <div class="footer_main_title py-3"> О нас</div>
+                    <div class="footer_main_title py-3">О нас<a name="about"></a></div>
                     <div class="footer_sub_about pb-3">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Использование любых материалов, размещённых на сайте, разрешается при условии ссылки на News24.
+                        При копировании материалов со страницы «Новости Украины и мира», для интернет-изданий – обязательна прямая открытая для поисковых систем гиперссылка. Ссылка должна быть размещена в независимости от полного либо частичного использования материалов. Гиперссылка (для интернет- изданий) – должна быть размещена в подзаголовке или в первом абзаце материала.
+                   
+                        Владелец веб-страницы в разделе Я- Корреспондент является автор публикации.
                     </div>
-                   
+                    <div class="footer_mediya_icon">
+                        <div class="text-center d-inline-block">
+                            <a class="fh5co_display_table_footer">
+                                <div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div>
+                            </a>
+                        </div>
+                        <div class="text-center d-inline-block">
+                            <a class="fh5co_display_table_footer">
+                                <div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div>
+                            </a>
+                        </div>
+                        <div class="text-center d-inline-block">
+                            <a class="fh5co_display_table_footer">
+                                <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
+                            </a>
+                        </div>
+                        <div class="text-center d-inline-block">
+                            <a class="fh5co_display_table_footer">
+                                <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-md-3 col-lg-2">
-                    <div class="footer_main_title py-3"> Category</div>
-                    <ul class="footer_menu">
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Business</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Entertainment</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Environment</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Health</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Life style</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Politics</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Technology</a></li>
-                        <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; World</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-12 col-md-12 col-lg-4 ">
-                    <div class="footer_main_title py-3"> Последние посты</div>
 
-                    @RenderSection("LastPosted", required: false)
-                   
-                </div>
+                @Html.Action("GetCategories", "Start")
+                @Html.Action("GetLastPosted", "Start")
             </div>
-         
+
         </div>
     </div>
     <div class="container-fluid fh5co_footer_right_reserved">
         <div class="container">
             <div class="row  ">
-                <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2018, All rights reserved. Design by <a href="https://freehtml5.co" title="Free HTML5 Bootstrap templates">FreeHTML5.co</a>. </div>
+                <div class="col-12 col-md-6 py-4 Reserved"> © Все права защищены 2020 </div>
                 <div class="col-12 col-md-6 spdp_right py-4">
-                    <a href="#" class="footer_last_part_menu">Home</a>
-                    <a href="Contact_us.html" class="footer_last_part_menu">About</a>
-                    <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-                    <a href="blog.html" class="footer_last_part_menu">Latest News</a>
+                    <a href="@Url.Action("Index", "Start")" class="footer_last_part_menu">Главная</a>
+                    <a href="#about" class="footer_last_part_menu">О нас</a>
+                    <a href="@Url.Action("Contact", "Start")" class="footer_last_part_menu">Контакты</a>
+                    <a href="@Url.Action("News", "Start")" class="footer_last_part_menu">Новости</a>
                 </div>
             </div>
         </div>
@@ -203,8 +190,9 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
     @Scripts.Render("~/scripts/jquery.waypoints.min.js")
-    @Scripts.Render("~/scripts/owl.carousel.min.js")
     @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/scripts/owl.carousel.min.js")
     @Scripts.Render("~/bundles/main")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

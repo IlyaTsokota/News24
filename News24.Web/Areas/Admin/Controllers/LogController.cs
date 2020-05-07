@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace News24.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class LogController : Controller
     {
         private readonly ILogService _logService;

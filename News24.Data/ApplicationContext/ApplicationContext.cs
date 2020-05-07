@@ -7,20 +7,22 @@ namespace News24.Data.ApplicationContext
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
-        static ApplicationContext()
-        {
-            Database.SetInitializer(new ApplicationContextInitializer());
-        }
 
         public ApplicationContext()
            : base("name=News24")
         { }
 
+        static ApplicationContext()
+        {
+            Database.SetInitializer(new ApplicationContextInitializer());
+        }
+
+        
+
         public IDbSet<Article> Articles { get; set; }
 
         public IDbSet<Category> Categories { get; set; }
 
-        public IDbSet<Comment> Comments { get; set; }
 
         public IDbSet<Log> Logs { get; set; }
 

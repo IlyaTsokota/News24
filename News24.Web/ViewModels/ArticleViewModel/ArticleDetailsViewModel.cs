@@ -20,6 +20,7 @@ namespace News24.Web.ViewModels.ArticleViewModel
 
         public DateTime PublicationDate { get; set; }
 
+
         public ContactInfoViewModel User { get; set; }
 
         public  ArticleCategoryViewModel Category { get; set; }

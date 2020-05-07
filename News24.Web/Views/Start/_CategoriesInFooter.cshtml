@@ -1,0 +1,10 @@
+﻿@model List<News24.Web.ViewModels.StartViewModels.CategoryViewModel>
+<div class="col-12 col-md-3 col-lg-2">
+    <div class="footer_main_title py-3"> Категории</div>
+    <ul class="footer_menu">
+        @foreach (var item in Model)
+        {
+        <li><a href="@Url.Action("News", "Start", new { category = item.Name})" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; @item.Name</a></li>
+        }
+    </ul>
+</div>

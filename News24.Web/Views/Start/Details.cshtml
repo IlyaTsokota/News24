@@ -1,0 +1,46 @@
+﻿@model News24.Web.ViewModels.ArticleViewModel.ArticleDetailsViewModel
+@{
+    ViewBag.Title = "Статья";
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.MainImage)" alt="@Model.Head" class="d-flex w-100 justify-content-center " />
+            <div class="overlay">
+                <div class="page-title">
+                    @if (Model.User.Email == "admin@gmail.com")
+                    {
+                        <img src="~/images/Account.jpg" alt="AccountImage" class="img-fluid img-thumbnail img-user" />
+                    }
+                    else
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.User.Image)" alt="AccountImage" class="img-fluid img-thumbnail img-user" />
+                    }
+                    <span>@Model.PublicationDate.ToString("D")</span>
+                    <h2>@Model.Head</h2>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+        <div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
+            <div class="container paddding">
+                <div class="row mx-0">
+                    <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                        @Model.Body
+                    </div>
+                    <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                        @using (Html.BeginForm("News", "Article"))
+                        {
+                            Html.RenderAction("GetTags", "Start");
+                        }
+                        @Html.Action("GetMostPopular", "Start")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid pb-4 pt-5">
+            @Html.Action("GetTrendings", "Start", new { way = 2 })
+        </div>

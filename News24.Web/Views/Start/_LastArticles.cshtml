@@ -1,24 +1,28 @@
 ﻿@model News24.Web.ViewModels.StartViewModels.IndexViewModel
 
-   
-        <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
-            <div class="fh5co_suceefh5co_height">
-                <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.LastArticles[0].MainImage)" alt="@Model.LastArticles[0].Head" />
 
-                <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                <div class="fh5co_suceefh5co_height_position_absolute_font">
-                    <div class="">
-                        <a href="#" class="color_fff">
-                            <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.LastArticles[0].PublicationDate.ToString("dd.MM.yyyy")
-                        </a>
-                    </div>
-                    <div class="">@Html.ActionLink(Model.LastArticles[0].Head, "Index", "Article", new { id = Model.LastArticles[0].ArticleId }, new { @class = "fh5co_good_font" })</div>
+@if (Model.LastArticles.Count() != 0)
+{
+    <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
+        <div class="fh5co_suceefh5co_height">
+            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.LastArticles[0].MainImage)" alt="@Model.LastArticles[0].Head" />
+
+            <div class="fh5co_suceefh5co_height_position_absolute"></div>
+            <div class="fh5co_suceefh5co_height_position_absolute_font">
+                <div class="">
+                    <a href="#" class="color_fff">
+                        <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.LastArticles[0].PublicationDate.ToString("dd.MM.yyyy")
+                    </a>
                 </div>
+                <div class="">@Html.ActionLink(Model.LastArticles[0].Head, "Details", "Start", new { id = Model.LastArticles[0].ArticleId }, new { @class = "fh5co_good_font" })</div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                @for (int i = 1; i < Model.LastArticles.Count(); i++) {
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            @for (int i = 1; i < Model.LastArticles.Count(); i++)
+            {
+
                 <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
                     <div class="fh5co_suceefh5co_height_2">
                         <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.LastArticles[i].MainImage)" alt="@Model.LastArticles[i].Head" />
@@ -30,10 +34,16 @@
                                     <i class="fa fa-clock-o"></i>&nbsp;&nbsp;@Model.LastArticles[i].PublicationDate.ToString("dd.MM.yyyy")
                                 </a>
                             </div>
-                            <div class="">@Html.ActionLink(Model.LastArticles[i].Head, "Index", "Article", new { id = Model.LastArticles[i].ArticleId }, new { @class = "fh5co_good_font" })</div>
+                            <div class="">@Html.ActionLink(Model.LastArticles[i].Head, "Details", "Start", new { id = Model.LastArticles[i].ArticleId }, new { @class = "fh5co_good_font" })</div>
                         </div>
                     </div>
                 </div>
-                }
-            </div>
+            }
         </div>
+    </div>
+}
+else
+{
+    <div class="col-6 mx-auto"> <h1 >Статей нету</h1></div>
+
+}

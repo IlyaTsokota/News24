@@ -7,9 +7,10 @@ namespace News24.Web.Areas.Admin.ViewModels.ArticleViewModels
 {
     public class CreateArticleViewModel : ArticleViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Выберите изображение")]
         public HttpPostedFileBase Image { get; set; }
 
+     
 
         public List<SelectListItem> CategoriesList { get; set; }
     }

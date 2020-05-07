@@ -1,14 +1,13 @@
-﻿@model News24.Web.ViewModels.StartViewModels.IndexViewModel
+﻿@model List<News24.Web.ViewModels.StartViewModels.CategoryViewModel>
 <div>
     <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Категории</div>
 </div>
 <div class="clearfix"></div>
 <div class="fh5co_tags_all">
-    @foreach (var item in Model.Categories)
+    @foreach (var item in Model)
     {
-        <input type="submit" id="category" name="category" class="fh5co_tagg" value="@item.Name" />
+       <a href="#news"> <input type="submit" name="category" class="fh5co_tagg" value="@item.Name" /></a>
        
     }
-
 
 </div>

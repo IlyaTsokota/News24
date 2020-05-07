@@ -1,40 +1,16 @@
-﻿<div>
-    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Most Popular</div>
+﻿@model List<News24.Web.ViewModels.StartViewModels.ArticleViewModel>
+<div>
+    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Последние обновления</div>
 </div>
-<div class="row pb-3">
-    <div class="col-5 align-self-center">
-        <img src="~/images/download (1).jpg" alt="img" class="fh5co_most_trading" />
+@foreach (var item in Model)
+{
+    <div class="row pb-3">
+        <div class="col-5 align-self-center">
+            <img src="data:image/jpeg;base64, @Convert.ToBase64String(item.MainImage)" alt="@item.Head" class="fh5co_most_trading" />
+        </div>
+        <div class="col-7 paddding">
+            @Html.ActionLink(item.Head,"Details","Start", new { id = item.ArticleId},htmlAttributes: new { @class="most_fh5co_treding_font ", @style ="text-decoration:none; color:black;"} )
+            <div class="most_fh5co_treding_font_123"> @item.PublicationDate.ToString("D")</div>
+        </div>
     </div>
-    <div class="col-7 paddding">
-        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.</div>
-        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-    </div>
-</div>
-<div class="row pb-3">
-    <div class="col-5 align-self-center">
-        <img src="~/images/allef-vinicius-108153.jpg" alt="img" class="fh5co_most_trading" />
-    </div>
-    <div class="col-7 paddding">
-        <div class="most_fh5co_treding_font"> Enim ad minim veniam nostrud xercitation ullamco.</div>
-        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-    </div>
-</div>
-<div class="row pb-3">
-    <div class="col-5 align-self-center">
-        <img src="~/images/download (2).jpg" alt="img" class="fh5co_most_trading" />
-    </div>
-    <div class="col-7 paddding">
-        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.</div>
-        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-    </div>
-</div>
-<div class="row pb-3">
-    <div class="col-5 align-self-center">
-        <img src="~/images/seth-doyle-133175.jpg" alt="img"
-             class="fh5co_most_trading" />
-    </div>
-    <div class="col-7 paddding">
-        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.</div>
-        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-    </div>
-</div>
+}

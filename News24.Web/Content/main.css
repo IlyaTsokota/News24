@@ -43,3 +43,12 @@
     position: fixed;
     height: 100vh;
 }
+.link {
+    color: black;
+}
+.img-user{
+    margin-top:10px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}

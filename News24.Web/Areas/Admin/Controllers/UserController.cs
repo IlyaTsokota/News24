@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace News24.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
 

@@ -2,6 +2,7 @@
 using News24.Model;
 using News24.Service;
 using News24.Web.Models;
+using News24.Web.ViewModels.ArticleViewModel;
 using News24.Web.ViewModels.StartViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace News24.Web.Controllers
             _categoryService = categoryService;
         }
         // GET: Home
+        [HttpGet]
         public ActionResult Index(int page = 1)
         {
             var categories = _categoryService.GetCategories();
@@ -42,8 +44,17 @@ namespace News24.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetArticles(int page = 1, string category = null)
+        public ActionResult GetArticles( int page = 1, string category = null)
         {
+            if (!String.IsNullOrEmpty(category))
+            {
+                Session["Category"] = null;
+            }
+            if (Session["Category"] != null)
+            {
+                category = Session["Category"].ToString();
+            }
+            Session["Category"] = category;
             var articles = _articleService.GetArticles();
             if (!String.IsNullOrEmpty(category))
             {
@@ -54,12 +65,87 @@ namespace News24.Web.Controllers
             var model = new IndexViewModel
             {
                 Articles = mappArticles,
-                Pager = pager
+                Pager = pager,
+                Category = category
             };
             return PartialView("_Articles", model);
         }
 
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var article = _articleService.GetArticle(id);
+            var model = Mapper.Map<Article, ArticleDetailsViewModel>(article);
+
+            return View(model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetLastPosted()
+        {
+            var articles = _articleService.GetArticles();
+            var model = articles.Select(Mapper.Map<Article, ArticleViewModel>).OrderByDescending(x => x.PublicationDate).Take(8).ToList();
+            return PartialView("_LastPosted", model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetCategories()
+        {
+            var categories = _categoryService.GetCategories();
+            var model = categories.Select(Mapper.Map<Category, CategoryViewModel>).ToList();
+            return PartialView("_CategoriesInFooter", model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetTags()
+        {
+            var categories = _categoryService.GetCategories();
+            var model = categories.Select(Mapper.Map<Category, CategoryViewModel>).ToList();
+            return PartialView("_Tags", model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetMostPopular()
+        {
+            var articles = _articleService.GetArticles();
+            var model = articles.Select(Mapper.Map<Article, ArticleViewModel>).OrderByDescending(x => x.PublicationDate).Take(6).ToList();
+            return PartialView("_MostPopular", model);
+        }
 
 
+        [ChildActionOnly]
+        public ActionResult GetTrendings(int way)
+        {
+            var articles = _articleService.GetArticles();
+            var model = articles.Select(Mapper.Map<Article, ArticleViewModel>).OrderByDescending(x => x.PublicationDate).Take(12).ToList();
+            if (way == 1)
+            {
+                return PartialView("_InTrend", model);
+            }
+            else
+            {
+                return PartialView("_Trendings", model);
+            }
+        }
+
+        public ActionResult News(int page = 1, string category = null)
+        {
+            var articles = _articleService.GetArticles();
+            var categories = _categoryService.GetCategories();
+            if (!String.IsNullOrEmpty(category))
+            {
+                articles = articles.Where(x => x.Category.Name == category).ToList();
+            }
+            var mappArticles = articles.Select(Mapper.Map<Article, ArticleViewModel>).Skip((page - 1) * _pageSize).Take(_pageSize).Reverse().ToList();
+            var mappCategories = categories.Select(Mapper.Map<Category, CategoryViewModel>).ToList();
+            var pager = new Pager(page, articles.Count(), _pageSize);
+            var model = new IndexViewModel
+            {
+                Articles = mappArticles,
+                Pager = pager,
+                Categories = mappCategories
+            };
+            return View(model);
+        }
     }
 }

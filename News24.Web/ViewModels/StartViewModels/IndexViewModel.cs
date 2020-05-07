@@ -14,5 +14,6 @@ namespace News24.Web.ViewModels.StartViewModels
         public List<CategoryViewModel> Categories { get; set; }
 
         public Pager Pager { get; set; }
+        public string Category { get; set; }
     }
 }

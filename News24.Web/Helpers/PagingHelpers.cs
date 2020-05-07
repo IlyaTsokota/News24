@@ -11,9 +11,12 @@ namespace News24.Web.Helpers
         Pager pager, Func<int, string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
+            var div = new TagBuilder("div");
+            div.AddCssClass("pagination col-12 d-flex flex-wrap justify-content-center");
             for (int i = 1; i <= pager.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
+
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
                 // если текущая страница, то выделяем ее,
@@ -24,8 +27,10 @@ namespace News24.Web.Helpers
                     tag.AddCssClass("btn-primary");
                 }
                 tag.AddCssClass("btn btn-default");
-                result.Append(tag.ToString());
+                div.InnerHtml += tag.ToString();
+                
             }
+            result.Append(div.ToString());
             return MvcHtmlString.Create(result.ToString());
         }
         public static MvcHtmlString PaginationAjax(this HtmlHelper html, Pager pager)

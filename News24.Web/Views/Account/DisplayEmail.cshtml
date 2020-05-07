@@ -5,11 +5,13 @@
 
 <div class="container">
     <div class="row justify-content-md-center">
+        <div class="col-6">
+            <h2 class="text-center">@ViewBag.Title</h2>
+            <p class=" text-center text-info">
+                На указанный электронный адрес отправлены дальнейшие инструкции по завершению регистрации
+            </p>
+            @Html.ActionLink("На главную", "Index", "Start", null, new { @class = "btn btn-link" })
+        </div>
 
-        <h2 class="text-center">@ViewBag.Title</h2>
-        <p class=" text-center text-info">
-            На указанный электронный адрес отправлены дальнейшие инструкции по завершению регистрации
-        </p>
-        @Html.ActionLink("На главную", "Index", "Home", null, new { @class = "btn btn-link" })
     </div>
 </div>

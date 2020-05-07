@@ -12,7 +12,7 @@ namespace News24.Web.ViewModels.StartViewModels
 
         [Display(Name = "Заголовок")]
         [Required]
-        [MaxLength(50, ErrorMessage = "Вы ввели слишком много символов!")]
+        [MaxLength(100, ErrorMessage = "Вы ввели слишком много символов!")]
         [MinLength(2, ErrorMessage = "Вы ввели слишком мало символов!")]
         public string Head { get; set; }
         [Required]
@@ -22,6 +22,8 @@ namespace News24.Web.ViewModels.StartViewModels
         public string Body { get; set; }
 
         public ArticleCategoryViewModel Category { get; set; }
+
+        public ContactInfoViewModel User { get; set; }
 
         [Display(Name = "Дата публикации")]
         public DateTime PublicationDate { get; set; }

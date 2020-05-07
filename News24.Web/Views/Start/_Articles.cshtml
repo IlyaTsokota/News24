@@ -1,28 +1,36 @@
 ﻿@model News24.Web.ViewModels.StartViewModels.IndexViewModel
-
+@using News24.Web.Helpers
 @foreach (var item in Model.Articles)
 {
     <div class="row pb-4">
         <div class="col-md-5">
             <div class="fh5co_hover_news_img">
                 <div class="fh5co_news_img">
-                    <img class ="img-fluid "src="data:image/jpeg;base64, @Convert.ToBase64String(item.MainImage)" alt="@item.Head" />
+                    <img class="img-fluid " src="data:image/jpeg;base64, @Convert.ToBase64String(item.MainImage)" alt="@item.Head" />
                 </div>
                 <div></div>
             </div>
         </div>
         <div class="col-md-7">
-            <div class="">@Html.ActionLink(item.Head, "Index", "Article", new { id = item.ArticleId }, new { @class = "fh5co_magna py-2" })</div>
+            <div class="">@Html.ActionLink(item.Head, "Details", "Start", new { id = item.ArticleId }, new { @class = "fh5co_magna py-2" })</div>
 
             <a href="#" class="fh5co_mini_time py-3">
-                Thomson Smith -
+                @item.User.FirstName  @item.User.LastName -
                 @item.PublicationDate
             </a>
             <div class="fh5co_consectetur">
-               @item.Body.Substring(0, item.Body.Length > 200 ? 200 : item.Body.Length )
+                @item.Body.Substring(0, item.Body.Length > 200 ? 200 : item.Body.Length)
                 ...
             </div>
 
         </div>
     </div>
 }
+<div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
+    <div class="col-12 text-center pb-4 pt-4">
+
+
+        @Html.PaginationArticlesAjax(Model.Pager)
+
+    </div>
+</div>

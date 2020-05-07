@@ -61,7 +61,6 @@
     <Compile Include="Category.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Comment.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

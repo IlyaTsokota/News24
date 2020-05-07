@@ -1,7 +1,59 @@
-﻿
+﻿@model News24.Web.Areas.Admin.ViewModels.ArticleViewModels.DetailsArticleViewModel
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Детальнее о статье";
 }
 
-<h2>Details</h2>
+<div class="row justify-content-center">
 
+    <div class="col-md-8">
+
+        <h2 class="text-center">@ViewBag.Title № @Html.DisplayFor(model => model.ArticleId)</h2>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Head)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Head)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PublicationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PublicationDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Body)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Body)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SearchValues)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SearchValues)
+            </dd>
+
+
+        </dl>
+
+    </div>
+    <div class="w-100"></div>
+        <div class="form-group">
+            <div class="col-md-12">
+
+                @Html.ActionLink("Изменить", "Edit", new { id = Model.ArticleId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Назад", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+  
+</div>

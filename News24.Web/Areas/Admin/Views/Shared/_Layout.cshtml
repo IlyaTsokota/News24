@@ -9,28 +9,26 @@
     <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="row" style="overflow-x:hidden; overflow-y:hidden; overflow:hidden;">
-        <div class="col-md-2 align-items-xl-center ">
-            <div class="btn-group">
-                
+    <div class="container-fluid">
+        <div class="row" style="overflow-x:hidden; overflow-y:hidden; overflow:hidden;">
+            <div class="col-md-12 align-items-xl-center nav navbar">
+                <div class="btn-group">
                     <a class="btn active btn-info" href="@Url.Action("Index", "Start", new { Area = string.Empty })">
-                        <h2>News24</h2>        
+                        <h2>News24</h2>
                     </a>
-                
-              
-                <hr />
-                <a class="btn active btn-outline-primary" href="@Url.Action("Index", "Article")">Статьи</a>
-                <a class="btn active btn-outline-primary" href="@Url.Action("Index", "Category")">Категории</a>
-                <a class="btn active btn-outline-primary" href="@Url.Action("Index", "Log")">Логи</a>
-                <a class="btn active btn-outline-primary" href="@Url.Action("Index","User")">Пользователи</a>
+                    <hr />
+                    <a class="btn active btn-outline-primary" href="@Url.Action("Index", "Article")">Статьи</a>
+                    <a class="btn active btn-outline-primary" href="@Url.Action("Index", "Category")">Категории</a>
+                    <a class="btn active btn-outline-primary" href="@Url.Action("Index", "Log")">Логи</a>
+                    <a class="btn active btn-outline-primary" href="@Url.Action("Index","User")">Пользователи</a>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-12">
+                @RenderBody()
             </div>
         </div>
-        <div class="w-100"></div>
-        <div class="col-md-10 ml-5">
-            @RenderBody()
-        </div>
     </div>
-
 
     @Scripts.Render("~/scripts/main.js")
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

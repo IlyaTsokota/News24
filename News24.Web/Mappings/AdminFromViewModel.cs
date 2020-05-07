@@ -5,6 +5,9 @@ using News24.Web.Areas.Admin.ViewModels.CategoryViewModels;
 using News24.Web.Extensions;
 using System;
 
+using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+
 namespace News24.Web.Mappings
 {
     public class AdminFromViewModel : Profile
@@ -15,8 +18,7 @@ namespace News24.Web.Mappings
             CreateMap<ArticleViewModel, Article>();
             CreateMap<ArticleCategoryViewModel, Category>();
             CreateMap<CreateArticleViewModel, Article>()
-                .ForMember(
-                m => m.MainImage,
+                .ForMember(m => m.MainImage,
                 opt => opt.MapFrom(src => src.Image.ToByteArray()))
                 .ForMember(m => m.PublicationDate,
                 opt => opt.MapFrom(src => DateTime.Now));
@@ -31,5 +33,7 @@ namespace News24.Web.Mappings
 
 
         }
+
+      
     }
 }

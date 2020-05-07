@@ -48,7 +48,7 @@ namespace News24.Web.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, shouldLockout: false).ConfigureAwait(false);
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, shouldLockout: false).ConfigureAwait(false);
 
             switch (result)
             {
@@ -215,7 +215,7 @@ namespace News24.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Start");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
@@ -225,7 +225,7 @@ namespace News24.Web.Controllers
                 return Redirect(returnUrl);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Start");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
