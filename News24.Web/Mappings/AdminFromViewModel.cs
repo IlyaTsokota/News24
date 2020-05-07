@@ -7,6 +7,7 @@ using System;
 
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using News24.Web.Areas.Admin.ViewModels.TagViewModel;
 
 namespace News24.Web.Mappings
 {
@@ -30,7 +31,7 @@ namespace News24.Web.Mappings
             //Category
             CreateMap<CreateCategoryViewModel, Category>();
             CreateMap<EditCategoryViewModel, Category>();
-
+            CreateMap<TagViewModel, Tag>();
 
         }
 

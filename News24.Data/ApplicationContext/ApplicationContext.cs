@@ -17,12 +17,11 @@ namespace News24.Data.ApplicationContext
             Database.SetInitializer(new ApplicationContextInitializer());
         }
 
-        
-
         public IDbSet<Article> Articles { get; set; }
 
         public IDbSet<Category> Categories { get; set; }
 
+        public IDbSet<Tag> Tags { get; set; }
 
         public IDbSet<Log> Logs { get; set; }
 

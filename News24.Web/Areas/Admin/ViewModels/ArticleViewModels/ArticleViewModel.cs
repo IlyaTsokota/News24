@@ -29,11 +29,5 @@ namespace News24.Web.Areas.Admin.ViewModels.ArticleViewModels
 
         public byte[] MainImage { get; set; }
 
-        [Required]
-        [Display(Name = "Ключевые слова для поиска")]
-        [MaxLength(200, ErrorMessage = "Вы ввели слишком много символов!")]
-        [MinLength(2, ErrorMessage = "Вы ввели слишком мало символов!")]
-        public string SearchValues { get; set; }
-
     }
 }

@@ -300,3 +300,27 @@ $('#supplyProductAdd').click(function () {
     $('#supplyProducts').append(res);
 });
 
+var submitAutocompleteForm = function (event, ui) {
+    var $input = $(this); // the HTML element (Textbox)
+
+    // selected value
+    $input.val(ui.item.label); // ui.item.label = the label value (product)
+
+    window.location.href = "/Start/Details?id=" + ui.item.label;
+};
+var createAutocomplete = function () {
+    var $input = $(this); // the HTML element (Textbox)
+
+    var options = {
+        // selecting the source by finding elements with the 'data-' attribute
+        source: $input.attr("data-autocomplete"), // Required
+        select: submitAutocompleteForm // Optional
+    };
+
+    // apply options
+    $input.autocomplete(options);
+};
+
+// targets input elements with the 'data-' attributes and each time the input changes
+// it calls the 'createAutocomplete' function
+$("input[data-autocomplete]").each(createAutocomplete);

@@ -17,7 +17,6 @@ namespace News24.Model
 
         public DateTime PublicationDate { get; set; }
 
-        public string SearchValues { get; set; }
 
         public string UserId { get; set; }
 
@@ -26,6 +25,8 @@ namespace News24.Model
         public virtual User User { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public virtual List<Tag> Tags { get; set; }
 
     }
 }

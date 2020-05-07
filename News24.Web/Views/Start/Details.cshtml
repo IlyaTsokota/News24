@@ -32,10 +32,10 @@
                         @Model.Body
                     </div>
                     <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-                        @using (Html.BeginForm("News", "Article"))
+                        @*@using (Html.BeginForm("News", "Article"))
                         {
                             Html.RenderAction("GetTags", "Start");
-                        }
+                        }*@
                         @Html.Action("GetMostPopular", "Start")
                     </div>
                 </div>

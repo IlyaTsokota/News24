@@ -65,7 +65,7 @@ namespace News24.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(CreateArticleViewModel model)
         {
-           
+
             var article = Mapper.Map<CreateArticleViewModel, Article>(model);
             article.UserId = User.Identity.GetUserId();
             var errors = _articleService.CanAddArticle(article);
@@ -76,8 +76,8 @@ namespace News24.Web.Areas.Admin.Controllers
                 return View(model);
             }
             _articleService.CreateArticle(article);
-            Logger.Log.Info($"{User.Identity.Name} создал новую статью №{model.ArticleId}");
-            return RedirectToAction("Index");
+            Logger.Log.Info($"{User.Identity.Name} создал новую статью №{article.ArticleId}");
+            return RedirectToAction("Create", "Tag", new { articleId = article.ArticleId });
         }
 
         [HttpGet]

@@ -35,12 +35,12 @@
     <td class="text-right">
         @Html.ActionLink("Подробности", "Details", new { id = item.ArticleId }, new { @class = "btn btn-info" })
         @Html.ActionLink("Изменить", "Edit", new { id = item.ArticleId }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Теги", "Index", "Tag", new { id = item.ArticleId }, new { @class = "btn btn-warning" })
         @Html.ActionLink("Удалить", "Delete", new { id = item.ArticleId }, new { @class = "btn btn-danger" })
 
     </td>
 </tr>
     }
-
 </table>
 
 <div class="row pl-3">

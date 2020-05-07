@@ -1,0 +1,44 @@
+﻿@model News24.Web.Areas.Admin.ViewModels.TagViewModel.IndexTagViewModel
+
+
+@{
+    ViewBag.Title = "Теги";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center my-3">
+    <h2>@ViewBag.Title к статье №@Model.ArticleId</h2>
+    @Html.ActionLink("Добавить", "Create", new { articleId = Model.ArticleId }, new { @class = "btn btn-primary" })
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Tags.FirstOrDefault().Value)</th>
+
+            <th class="text-right">
+                Действие
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Tags)
+        {
+            <tr>
+                <td>@item.Value</td>
+
+                <td class="text-right">
+
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.TagId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.TagId }, new { @class = "btn btn-danger" })
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>

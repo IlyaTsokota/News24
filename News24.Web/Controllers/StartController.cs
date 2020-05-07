@@ -4,6 +4,7 @@ using News24.Service;
 using News24.Web.Models;
 using News24.Web.ViewModels.ArticleViewModel;
 using News24.Web.ViewModels.StartViewModels;
+using NHibernate.Cfg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,27 @@ namespace News24.Web.Controllers
             };
             return PartialView("_Articles", model);
         }
+        //public ActionResult Autocomplete(string term)
+        //{
+        //    try
+        //    {
+        //        //var model = _articleService.GetArticles() // your data here
+        //        //    .Where(p => p.Tags.ForEach(x=>x.Value.Contains(term)))
+        //        //    .Take(10)
+        //        //    .Select(p => new
+        //        //    {
+        //        //// jQuery UI needs the label property to function 
+        //        //    label = p.Article.Head.Trim()
+        //        //    });
+
+        //        //// Json returns [{"label":value}]
+        //        //return Json(model, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //          return Json("{'ex':'Exception'}");
+        //    }
+        //}
 
         [HttpGet]
         public ActionResult Details(int id)

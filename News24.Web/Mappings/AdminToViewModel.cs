@@ -3,6 +3,7 @@ using News24.Model;
 using News24.Web.Areas.Admin.ViewModels.ArticleViewModels;
 using News24.Web.Areas.Admin.ViewModels.CategoryViewModels;
 using News24.Web.Areas.Admin.ViewModels.LogViewModels;
+using News24.Web.Areas.Admin.ViewModels.TagViewModel;
 using News24.Web.Areas.Admin.ViewModels.UserViewModels;
 
 namespace News24.Web.Mappings
@@ -34,6 +35,7 @@ namespace News24.Web.Mappings
                 opt=>opt.MapFrom(src=>src.LockoutEnabled)
                 );
             CreateMap<User, DetailsUserViewModel>();
+            CreateMap<Tag, TagViewModel>();
         }
     }
 }
